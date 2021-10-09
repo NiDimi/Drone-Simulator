@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.canvas.Canvas?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="nick.dimitriou.GUI.MainController"
+            fx:id="borderPane" stylesheets="@style.css">
+
+    <padding>
+        <!-- Adding spaces from the text-->
+        <Insets top="10" bottom="10"/>
+    </padding>
+
+    <top>
+        <!-- A menu bar in the top of the screen-->
+        <MenuBar fx:id="topMenuBar" visible="false">
+            <Menu text="File">
+                <!-- The options to save load and exit the simulation-->
+                <MenuItem text="Save" onAction="#save"/>
+                <MenuItem text="Load" onAction="#load"/>
+                <MenuItem text="Exit" onAction="#exitButton"/>
+            </Menu>
+
+            <Menu text="Help">
+                <!-- Show how the simulation work-->
+                <MenuItem text="About" onAction="#aboutButton"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <left>
+        <Group>
+            <!--placing the canvas that the object will appear in the left-->
+            <Canvas fx:id="canvas"/>
+        </Group>
+    </left>
+
+    <center>
+        <!--Only fot the starting screen-->
+        <VBox fx:id="centerVBox" alignment="CENTER" spacing="100">
+            <Label fx:id="centerLabel" text="Welcome to Drone Simulator"/>
+            <HBox alignment="CENTER" spacing="15">
+                <!-- The options to start the simulation or load a previous one-->
+                <Button fx:id="beginButton" text="Begin simulation" onAction="#begin"/>
+                <Button fx:id="loadButton"  text="Load" onAction="#load"/>
+            </HBox>
+        </VBox>
+    </center>
+
+
+    <bottom>
+        <!-- In the bottom place buttons for the control of the simulation
+        all the buttons have a picture that represents what the do-->
+        <HBox fx:id="hBox" spacing="5" disable="true">
+
+            <Label text="Control: "/>
+
+            <!-- All the objects that can be added in a menubutton-->
+            <MenuButton fx:id="menuButton" text="Add" popupSide="TOP">
+                <graphic>
+                    <ImageView fitHeight="25" fitWidth="25">
+                        <Image url="@photos/plus.gif"/>
+                    </ImageView>
+                </graphic>
+
+                <items>
+
+                    <Menu fx:id="add" text="Add Drone">
+                        <graphic>
+                            <ImageView fitHeight="25" fitWidth="25">
+                                <Image url="@photos/drone-dribbb.gif"/>
+                            </ImageView>
+                        </graphic>
+                        <MenuItem fx:id="addDrone" text="Regular Drone"  onAction="#addDrone">
+                            <graphic>
+                                <ImageView fitHeight="25" fitWidth="25">
+                                    <Image url="@photos/regular.gif"/>
+                                </ImageView>
+                            </graphic>
+                        </MenuItem>
+
+                        <MenuItem fx:id="addStupid" text="Stupid Drone"  onAction="#addStupid">
+                            <graphic>
+                                <ImageView fitHeight="25" fitWidth="25">
+                                    <Image url="@photos/stupid.jpg"/>
+                                </ImageView>
+                            </graphic>
+                        </MenuItem>
+
+                        <MenuItem fx:id="addShielded" text="Shielded Drone"  onAction="#addShielded">
+                            <graphic>
+                                <ImageView fitHeight="25" fitWidth="25">
+                                    <Image url="@photos/shield.gif"/>
+                                </ImageView>
+                            </graphic>
+                        </MenuItem>
+                    </Menu>
+
+                    <MenuItem fx:id="addObstacle" text="Add Obstacle" onAction="#addObstacle">
+                        <graphic>
+                            <ImageView fitHeight="25" fitWidth="25">
+                                <Image url="@photos/rock.png"/>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+
+                </items>
+            </MenuButton>
+
+            <!-- A button that clears the screen-->
+            <Button text="Clear Screen" onAction="#clearButton">
+                <graphic>
+                    <ImageView fitHeight="25" fitWidth="25">
+                        <Image url="@photos/clear.gif"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Label text="Run: "/>
+            <!--Options to pause or resume the simulation-->
+            <Button fx:id="startButton" text="Start" onAction="#startButton">
+                <graphic>
+                    <ImageView fitHeight="25" fitWidth="25">
+                        <Image url="@photos/play.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Button fx:id="pauseButton" text="Pause" onAction="#pauseButton">
+                <graphic>
+                    <ImageView fitHeight="25" fitWidth="25">
+                        <Image url="@photos/pause.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Label text="Mouse: "/>
+
+            <!-- Options to choose between the drag and click options-->
+            <Button fx:id="dragButton" text="Drag" onAction="#drag">
+                <graphic>
+                    <ImageView fitHeight="25" fitWidth="25">
+                        <Image url="@photos/drag.gif"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Button fx:id="clickButton" text="Click" onAction="#clicked">
+                <graphic>
+                    <ImageView fitHeight="25" fitWidth="25">
+                        <Image url="@photos/click.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+        </HBox>
+    </bottom>
+
+</BorderPane>
